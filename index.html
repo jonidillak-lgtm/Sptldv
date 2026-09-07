@@ -108,15 +108,20 @@
             padding: 18px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        }
+
+        .equation-box:not(:last-child) {
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+            margin-bottom: 8px;
+            padding-bottom: 22px;
         }
 
         .equation-label {
             font-weight: 800;
             color: #667eea;
             font-size: 1.1em;
-            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -124,23 +129,52 @@
 
         .equation-inputs {
             display: grid;
-            grid-template-columns: auto 60px auto 60px auto 70px auto;
-            gap: 8px;
+            grid-template-columns: 90px 30px 90px 30px 90px 30px 90px;
+            gap: 10px;
             align-items: center;
+            justify-content: start;
         }
 
-        .equation-inputs > input,
-        .equation-inputs > select {
+        .equation-inputs > input {
             padding: 12px;
-            font-size: 0.95em;
+            font-size: 1em;
             font-weight: 700;
+            border: 2.5px solid #ddd;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background-color: #fafafa;
+        }
+
+        .equation-inputs > input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background-color: #fff;
+        }
+
+        .equation-inputs > select {
+            padding: 10px 12px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border: 2.5px solid #ddd;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background-color: #fafafa;
+            min-height: 48px;
+        }
+
+        .equation-inputs > select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background-color: #fff;
         }
 
         .equation-operator {
-            font-weight: 700;
-            color: #444;
+            font-weight: 800;
+            color: #667eea;
             text-align: center;
-            font-size: 1em;
+            font-size: 1.05em;
         }
 
         .test-point-section {
@@ -420,7 +454,7 @@
             }
 
             .equation-inputs {
-                grid-template-columns: auto 50px auto 50px auto 60px auto !important;
+                grid-template-columns: 80px 25px 80px 25px 80px 25px 80px !important;
             }
         }
 
@@ -430,6 +464,12 @@
             font-weight: 500;
             margin-bottom: 10px;
             font-style: italic;
+        }
+
+        #equationsContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
     </style>
 </head>
