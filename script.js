@@ -2,17 +2,17 @@
 
 const COLORS = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F'];
 let equations = [];
-let equationCount = 0;
 
 // Initialize with 2 default equations
 document.addEventListener('DOMContentLoaded', () => {
     addEquation();
     addEquation();
+    drawGraph();
 });
 
 function addEquation() {
     const container = document.getElementById('equationsContainer');
-    const index = equations.length;
+    const index = container.querySelectorAll('.equation-box').length;
     const color = COLORS[index % COLORS.length];
     
     const equationBox = document.createElement('div');
@@ -22,43 +22,35 @@ function addEquation() {
     equationBox.innerHTML = `
         <div class="equation-label">
             <span class="color-indicator" style="background-color: ${color}"></span>
-            Persamaan ${index + 1}
+            PERSAMAAN ${index + 1}
         </div>
         <div class="equation-inputs">
+            <span class="equation-operator">a =</span>
             <input type="number" class="coeff-a" value="1" placeholder="a" step="0.1">
-            <span style="text-align: center;">x +</span>
+            <span class="equation-operator">x +</span>
             <input type="number" class="coeff-b" value="1" placeholder="b" step="0.1">
-            <span style="text-align: center;">y</span>
+            <span class="equation-operator">y</span>
             <select class="operator">
                 <option value="<">&lt;</option>
                 <option value="<=">&le;</option>
                 <option value=">">&gt;</option>
                 <option value=">=">&ge;</option>
             </select>
+            <span class="equation-operator">c =</span>
+            <input type="number" class="constant" value="5" placeholder="c" step="0.1">
         </div>
-        <input type="number" class="constant" value="5" placeholder="c" step="0.1" style="width: 100%;" />
         <div class="delete-btn-container">
-            <button class="btn-danger" onclick="deleteEquation(${index})">Hapus</button>
+            <button class="btn-danger" onclick="deleteEquation(${index})">❌ HAPUS</button>
         </div>
     `;
     
     container.appendChild(equationBox);
-    
-    equations.push({
-        index: index,
-        color: color,
-        a: 1,
-        b: 1,
-        operator: '<',
-        c: 5
-    });
 }
 
 function deleteEquation(index) {
     const equationBox = document.getElementById(`equation-${index}`);
     if (equationBox) {
         equationBox.remove();
-        equations = equations.filter(eq => eq.index !== index);
     }
 }
 
@@ -92,52 +84,65 @@ function testPoint() {
     const minY = parseFloat(document.getElementById('minY').value) || 0;
     
     const equations = getEquationValues();
-    const resultDiv = document.getElementById('testResult');
     const resultSection = document.getElementById('resultSection');
     const resultContent = document.getElementById('resultContent');
     
     let allValid = true;
-    let details = '';
+    let html = '';
     
-    // Check constraints
-    if (x < minX) {
+    // LANGKAH 1: Cek Batasan X dan Y
+    html += `
+        <div class="step-container ${(x >= minX && y >= minY) ? 'valid' : 'invalid'}">
+            <div style="margin-bottom: 8px;">
+                <span class="step-number">1</span>
+                <span class="step-content" style="font-size: 1.1em;">CEK BATASAN VARIABEL</span>
+            </div>
+            <div class="calculation">
+                x = ${x} ${x >= minX ? '✓' : '✗'} harus ≥ ${minX}
+            </div>
+            <div class="calculation">
+                y = ${y} ${y >= minY ? '✓' : '✗'} harus ≥ ${minY}
+            </div>
+    `;
+    
+    if (x < minX || y < minY) {
         allValid = false;
-        details += `<div class="result-item">❌ x (${x}) < ${minX} - Melanggar batasan x ≥ ${minX}</div>`;
+        html += `<div style="margin-top: 8px; color: #721c24; font-weight: 700;">⚠️ BATASAN TIDAK TERPENUHI!</div>`;
     } else {
-        details += `<div class="result-item">✅ x (${x}) ≥ ${minX} - Memenuhi batasan</div>`;
+        html += `<div style="margin-top: 8px; color: #155724; font-weight: 700;">✅ BATASAN TERPENUHI!</div>`;
     }
     
-    if (y < minY) {
-        allValid = false;
-        details += `<div class="result-item">❌ y (${y}) < ${minY} - Melanggar batasan y ≥ ${minY}</div>`;
-    } else {
-        details += `<div class="result-item">✅ y (${y}) ≥ ${minY} - Memenuhi batasan</div>`;
-    }
+    html += `</div>`;
     
-    // Check equations
+    // LANGKAH 2-N: Cek Setiap Persamaan
     equations.forEach((eq, i) => {
         const leftSide = eq.a * x + eq.b * y;
         const rightSide = eq.c;
         
         let valid = false;
         let operator = '';
+        let operatorSymbol = '';
         
         switch(eq.operator) {
             case '<':
                 valid = leftSide < rightSide;
                 operator = '<';
+                operatorSymbol = 'lebih kecil dari';
                 break;
             case '<=':
                 valid = leftSide <= rightSide;
                 operator = '≤';
+                operatorSymbol = 'kurang dari atau sama dengan';
                 break;
             case '>':
                 valid = leftSide > rightSide;
                 operator = '>';
+                operatorSymbol = 'lebih besar dari';
                 break;
             case '>=':
                 valid = leftSide >= rightSide;
                 operator = '≥';
+                operatorSymbol = 'lebih besar atau sama dengan';
                 break;
         }
         
@@ -145,21 +150,74 @@ function testPoint() {
             allValid = false;
         }
         
-        const status = valid ? '✅' : '❌';
-        details += `<div class="result-item">${status} Persamaan ${i+1}: ${eq.a}(${x}) + ${eq.b}(${y}) ${operator} ${eq.c}<br/>
-                            <span style="color: #666; font-size: 0.9em;">${leftSide.toFixed(2)} ${operator} ${rightSide.toFixed(2)} - ${valid ? 'Memenuhi' : 'Tidak memenuhi'}</span></div>`;
+        const statusIcon = valid ? '✅' : '❌';
+        
+        html += `
+            <div class="step-container ${valid ? 'valid' : 'invalid'}">
+                <div style="margin-bottom: 12px;">
+                    <span class="step-number">${i + 2}</span>
+                    <span class="step-content" style="font-size: 1.1em;">SUBSTITUSI KE PERSAMAAN ${i + 1}</span>
+                </div>
+                
+                <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 10px;">
+                    <div class="step-content" style="margin-bottom: 8px;">
+                        <strong>Persamaan:</strong> ${eq.a}x + ${eq.b}y ${operator} ${eq.c}
+                    </div>
+                    
+                    <div class="calculation">
+                        ${eq.a}(${x}) + ${eq.b}(${y}) ${operator} ${eq.c}
+                    </div>
+                    
+                    <div class="calculation">
+                        ${eq.a * x} + ${eq.b * y} ${operator} ${eq.c}
+                    </div>
+                    
+                    <div class="calculation">
+                        ${leftSide.toFixed(2)} ${operator} ${rightSide.toFixed(2)}
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px;">
+                    <div class="step-content">
+                        <strong>Apakah ${leftSide.toFixed(2)} ${operatorSymbol} ${rightSide.toFixed(2)}?</strong>
+                    </div>
+                </div>
+                
+                <div style="font-size: 1.1em; font-weight: 800; padding: 12px; border-radius: 8px; background: ${valid ? '#d4edda' : '#f8d7da'};
+                           color: ${valid ? '#155724' : '#721c24'};">
+                    ${statusIcon} ${valid ? 'BENAR - Pertidaksamaan terpenuhi!' : 'SALAH - Pertidaksamaan tidak terpenuhi!'}
+                </div>
+            </div>
+        `;
     });
     
+    // KESIMPULAN AKHIR
+    const conclusionStep = equations.length + 2;
+    html += `
+        <div class="step-container ${allValid ? 'valid' : 'invalid'}">
+            <div style="margin-bottom: 12px;">
+                <span class="step-number">${conclusionStep}</span>
+                <span class="step-content" style="font-size: 1.1em;">KESIMPULAN AKHIR</span>
+            </div>
+            
+            <div class="final-conclusion ${allValid ? 'valid' : 'invalid'}">
+                ${allValid ? '✅ TITIK (' + x + ', ' + y + ') MEMENUHI SEMUA PERTIDAKSAMAAN' : '❌ TITIK (' + x + ', ' + y + ') TIDAK MEMENUHI SEMUA PERTIDAKSAMAAN'}
+            </div>
+            
+            ${allValid ? 
+                '<div style="margin-top: 12px; text-align: center; font-weight: 700; color: #155724; font-size: 1em;">Titik ini ada di dalam DAERAH PENYELESAIAN ✓</div>' :
+                '<div style="margin-top: 12px; text-align: center; font-weight: 700; color: #721c24; font-size: 1em;">Titik ini berada di LUAR DAERAH PENYELESAIAN ✗</div>'
+            }
+        </div>
+    `;
+    
+    resultSection.classList.remove('valid', 'invalid');
+    resultSection.classList.add(allValid ? 'valid' : 'invalid');
     resultSection.style.display = 'block';
-    resultContent.innerHTML = details;
+    resultContent.innerHTML = html;
     
-    const testResultDiv = document.createElement('div');
-    testResultDiv.className = `test-result ${allValid ? 'valid' : 'invalid'}`;
-    testResultDiv.innerHTML = allValid ? 
-        `✅ Titik (${x}, ${y}) MEMENUHI semua pertidaksamaan` : 
-        `❌ Titik (${x}, ${y}) TIDAK MEMENUHI semua pertidaksamaan`;
-    
-    resultContent.appendChild(testResultDiv);
+    // Scroll ke hasil
+    resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function drawGraph() {
@@ -242,8 +300,8 @@ function drawGraph() {
     
     // Label test point
     ctx.fillStyle = '#000';
-    ctx.font = 'bold 12px Arial';
-    ctx.fillText(`(${testX}, ${testY})`, pointX + 10, pointY - 10);
+    ctx.font = 'bold 13px Arial';
+    ctx.fillText(`P(${testX}, ${testY})`, pointX + 10, pointY - 10);
 }
 
 function drawGrid(ctx, width, height, centerX, centerY, scale) {
@@ -292,7 +350,7 @@ function drawAxes(ctx, width, height, centerX, centerY, scale) {
     
     // Tick marks and numbers
     ctx.fillStyle = '#000';
-    ctx.font = '11px Arial';
+    ctx.font = 'bold 12px Arial';
     
     for (let i = 1; i <= 10; i++) {
         // X-axis ticks
@@ -361,7 +419,7 @@ function drawInequality(ctx, eq, centerX, centerY, scale, width, height) {
     
     // Draw line
     ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
     ctx.moveTo(screen1.x, screen1.y);
     ctx.lineTo(screen2.x, screen2.y);
