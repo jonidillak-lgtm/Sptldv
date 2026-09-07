@@ -90,9 +90,9 @@ function testPoint() {
     // LANGKAH 1: Cek Batasan X dan Y
     html += `
         <div class="step-container ${(x >= minX && y >= minY) ? 'valid' : 'invalid'}">
-            <div style="margin-bottom: 8px;">
+            <div style="margin-bottom: 6px;">
                 <span class="step-number">1</span>
-                <span class="step-content" style="font-size: 1.1em;">CEK BATASAN VARIABEL</span>
+                <span class="step-content" style="font-size: 1em;">CEK BATASAN VARIABEL</span>
             </div>
             <div class="calculation">
                 x = ${x} ${x >= minX ? '✓' : '✗'} harus ≥ ${minX}
@@ -104,9 +104,9 @@ function testPoint() {
     
     if (x < minX || y < minY) {
         allValid = false;
-        html += `<div style="margin-top: 8px; color: #721c24; font-weight: 700;">⚠️ BATASAN TIDAK TERPENUHI!</div>`;
+        html += `<div style="margin-top: 6px; color: #721c24; font-weight: 700;">⚠️ BATASAN TIDAK TERPENUHI!</div>`;
     } else {
-        html += `<div style="margin-top: 8px; color: #155724; font-weight: 700;">✅ BATASAN TERPENUHI!</div>`;
+        html += `<div style="margin-top: 6px; color: #155724; font-weight: 700;">✅ BATASAN TERPENUHI!</div>`;
     }
     
     html += `</div>`;
@@ -151,13 +151,13 @@ function testPoint() {
         
         html += `
             <div class="step-container ${valid ? 'valid' : 'invalid'}">
-                <div style="margin-bottom: 12px;">
+                <div style="margin-bottom: 8px;">
                     <span class="step-number">${i + 2}</span>
-                    <span class="step-content" style="font-size: 1.1em;">SUBSTITUSI KE PERSAMAAN ${i + 1}</span>
+                    <span class="step-content" style="font-size: 1em;">SUBSTITUSI KE PERSAMAAN ${i + 1}</span>
                 </div>
                 
-                <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 10px;">
-                    <div class="step-content" style="margin-bottom: 8px;">
+                <div style="background: white; padding: 10px; border-radius: 8px; margin-bottom: 8px;">
+                    <div class="step-content" style="margin-bottom: 6px;">
                         <strong>Persamaan:</strong> ${eq.a}x + ${eq.b}y ${operator} ${eq.c}
                     </div>
                     
@@ -174,15 +174,15 @@ function testPoint() {
                     </div>
                 </div>
                 
-                <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px;">
+                <div style="background: white; padding: 10px; border-radius: 8px; margin-bottom: 6px;">
                     <div class="step-content">
                         <strong>Apakah ${leftSide.toFixed(2)} ${operatorSymbol} ${rightSide.toFixed(2)}?</strong>
                     </div>
                 </div>
                 
-                <div style="font-size: 1.1em; font-weight: 800; padding: 12px; border-radius: 8px; background: ${valid ? '#d4edda' : '#f8d7da'};
+                <div style="font-size: 0.95em; font-weight: 800; padding: 10px; border-radius: 8px; background: ${valid ? '#d4edda' : '#f8d7da'};
                            color: ${valid ? '#155724' : '#721c24'};">
-                    ${statusIcon} ${valid ? 'BENAR - Pertidaksamaan terpenuhi!' : 'SALAH - Pertidaksamaan tidak terpenuhi!'}
+                    ${statusIcon} ${valid ? 'BENAR' : 'SALAH'}
                 </div>
             </div>
         `;
@@ -192,9 +192,9 @@ function testPoint() {
     const conclusionStep = equations.length + 2;
     html += `
         <div class="step-container ${allValid ? 'valid' : 'invalid'}">
-            <div style="margin-bottom: 12px;">
+            <div style="margin-bottom: 8px;">
                 <span class="step-number">${conclusionStep}</span>
-                <span class="step-content" style="font-size: 1.1em;">KESIMPULAN AKHIR</span>
+                <span class="step-content" style="font-size: 1em;">KESIMPULAN AKHIR</span>
             </div>
             
             <div class="final-conclusion ${allValid ? 'valid' : 'invalid'}">
@@ -202,8 +202,8 @@ function testPoint() {
             </div>
             
             ${allValid ? 
-                '<div style="margin-top: 12px; text-align: center; font-weight: 700; color: #155724; font-size: 1em;">Titik ini ada di dalam DAERAH PENYELESAIAN ✓</div>' :
-                '<div style="margin-top: 12px; text-align: center; font-weight: 700; color: #721c24; font-size: 1em;">Titik ini berada di LUAR DAERAH PENYELESAIAN ✗</div>'
+                '<div style="margin-top: 8px; text-align: center; font-weight: 700; color: #155724; font-size: 0.9em;">Titik ini ada di dalam DAERAH PENYELESAIAN ✓</div>' :
+                '<div style="margin-top: 8px; text-align: center; font-weight: 700; color: #721c24; font-size: 0.9em;">Titik ini berada di LUAR DAERAH PENYELESAIAN ✗</div>'
             }
         </div>
     `;
@@ -214,7 +214,9 @@ function testPoint() {
     resultContent.innerHTML = html;
     
     // Scroll ke hasil
-    resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(() => {
+        resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
 }
 
 function drawGraph() {
@@ -297,7 +299,7 @@ function drawGraph() {
     
     // Label test point
     ctx.fillStyle = '#000';
-    ctx.font = 'bold 13px Arial';
+    ctx.font = 'bold 12px Arial';
     ctx.fillText(`P(${testX}, ${testY})`, pointX + 10, pointY - 10);
 }
 
@@ -347,7 +349,7 @@ function drawAxes(ctx, width, height, centerX, centerY, scale) {
     
     // Tick marks and numbers
     ctx.fillStyle = '#000';
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold 11px Arial';
     
     for (let i = 1; i <= 10; i++) {
         // X-axis ticks
@@ -357,7 +359,7 @@ function drawAxes(ctx, width, height, centerX, centerY, scale) {
             ctx.moveTo(x, centerY - 5);
             ctx.lineTo(x, centerY + 5);
             ctx.stroke();
-            ctx.fillText(i.toString(), x - 5, centerY + 20);
+            ctx.fillText(i.toString(), x - 5, centerY + 18);
         }
         
         // Y-axis ticks
@@ -367,17 +369,17 @@ function drawAxes(ctx, width, height, centerX, centerY, scale) {
             ctx.moveTo(centerX - 5, y);
             ctx.lineTo(centerX + 5, y);
             ctx.stroke();
-            ctx.fillText(i.toString(), centerX - 25, y + 5);
+            ctx.fillText(i.toString(), centerX - 22, y + 4);
         }
     }
     
     // Origin
-    ctx.fillText('0', centerX - 15, centerY + 20);
+    ctx.fillText('0', centerX - 12, centerY + 18);
     
     // Axis labels
-    ctx.font = 'bold 14px Arial';
-    ctx.fillText('x', width - 20, centerY - 10);
-    ctx.fillText('y', centerX + 10, 20);
+    ctx.font = 'bold 12px Arial';
+    ctx.fillText('x', width - 18, centerY - 8);
+    ctx.fillText('y', centerX + 8, 18);
 }
 
 function drawInequality(ctx, eq, centerX, centerY, scale, width, height) {
