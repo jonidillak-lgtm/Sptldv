@@ -11,15 +11,21 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
@@ -30,19 +36,19 @@
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
+            padding: 20px 15px;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
+            font-size: 1.8em;
+            margin-bottom: 8px;
             font-weight: 800;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .header p {
-            font-size: 1.2em;
+            font-size: 0.9em;
             opacity: 0.95;
             font-weight: 500;
         }
@@ -50,21 +56,21 @@
         .content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            padding: 30px;
+            gap: 15px;
+            padding: 15px;
         }
 
         .section {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
         .section-title {
-            font-size: 1.6em;
+            font-size: 1.3em;
             color: #333;
             border-bottom: 4px solid #667eea;
-            padding-bottom: 12px;
+            padding-bottom: 10px;
             font-weight: 700;
         }
 
@@ -77,7 +83,7 @@
         label {
             font-weight: 700;
             color: #444;
-            font-size: 1em;
+            font-size: 0.95em;
         }
 
         input[type="number"],
@@ -105,23 +111,23 @@
             background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
             border-left: 5px solid #667eea;
             border-radius: 12px;
-            padding: 18px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
         }
 
         .equation-box:not(:last-child) {
             border-bottom: 2px solid rgba(102, 126, 234, 0.2);
-            margin-bottom: 8px;
-            padding-bottom: 22px;
+            margin-bottom: 6px;
+            padding-bottom: 18px;
         }
 
         .equation-label {
             font-weight: 800;
             color: #667eea;
-            font-size: 1.1em;
+            font-size: 1em;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -129,23 +135,44 @@
 
         .equation-inputs {
             display: grid;
-            grid-template-columns: 90px 30px 90px 30px 90px 30px 90px;
-            gap: 10px;
+            grid-template-columns: 120px 30px 120px 30px 90px 30px 120px;
+            gap: 8px;
             align-items: center;
             justify-content: start;
         }
 
-        .equation-inputs > input {
-            padding: 12px;
-            font-size: 1em;
+        .equation-inputs > input.coeff-a,
+        .equation-inputs > input.coeff-b {
+            padding: 14px;
+            font-size: 1.1em;
             font-weight: 700;
             border: 2.5px solid #ddd;
             border-radius: 10px;
             transition: all 0.3s;
             background-color: #fafafa;
+            min-height: 50px;
         }
 
-        .equation-inputs > input:focus {
+        .equation-inputs > input.coeff-a:focus,
+        .equation-inputs > input.coeff-b:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background-color: #fff;
+        }
+
+        .equation-inputs > input.constant {
+            padding: 14px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border: 2.5px solid #ddd;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background-color: #fafafa;
+            min-height: 50px;
+        }
+
+        .equation-inputs > input.constant:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -160,7 +187,7 @@
             border-radius: 10px;
             transition: all 0.3s;
             background-color: #fafafa;
-            min-height: 48px;
+            min-height: 50px;
         }
 
         .equation-inputs > select:focus {
@@ -174,12 +201,12 @@
             font-weight: 800;
             color: #667eea;
             text-align: center;
-            font-size: 1.05em;
+            font-size: 1.1em;
         }
 
         .test-point-section {
             background: linear-gradient(135deg, #e3f2fd 0%, #f0f4ff 100%);
-            padding: 18px;
+            padding: 16px;
             border-radius: 12px;
             border: 3px solid #667eea;
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
@@ -188,18 +215,20 @@
         .test-point-inputs {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 12px;
         }
 
         .test-point-inputs input {
             font-weight: 700;
             font-size: 1em;
+            padding: 12px;
+            min-height: 45px;
         }
 
         .constraint-section {
             background: linear-gradient(135deg, #fff9e6 0%, #fffbf0 100%);
-            padding: 18px;
+            padding: 16px;
             border-radius: 12px;
             border: 3px solid #ffc107;
             box-shadow: 0 4px 12px rgba(255, 193, 7, 0.1);
@@ -220,8 +249,8 @@
         .constraint-label {
             font-weight: 800;
             color: #f57f17;
-            font-size: 1.05em;
-            min-width: 50px;
+            font-size: 1em;
+            min-width: 45px;
         }
 
         .constraint-row > input {
@@ -229,13 +258,14 @@
             padding: 12px;
             font-size: 1em;
             font-weight: 700;
+            min-height: 45px;
         }
 
         button {
-            padding: 14px 24px;
+            padding: 12px 16px;
             border: none;
             border-radius: 10px;
-            font-size: 1.05em;
+            font-size: 0.95em;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
@@ -254,6 +284,10 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
         .btn-secondary {
             background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
             color: white;
@@ -266,17 +300,25 @@
             box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
         }
 
+        .btn-secondary:active {
+            transform: translateY(-1px);
+        }
+
         .btn-danger {
             background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
             color: white;
-            padding: 10px 18px;
-            font-size: 0.95em;
+            padding: 8px 12px;
+            font-size: 0.85em;
             box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
         }
 
         .btn-danger:hover {
             background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
             transform: translateY(-2px);
+        }
+
+        .btn-danger:active {
+            transform: translateY(0);
         }
 
         .btn-success {
@@ -292,15 +334,19 @@
             box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
         }
 
+        .btn-success:active {
+            transform: translateY(-1px);
+        }
+
         .graph-container {
             background: #fff;
             border: 3px solid #ddd;
             border-radius: 12px;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 500px;
+            min-height: 400px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
@@ -318,10 +364,10 @@
 
         .result-section {
             background: linear-gradient(135deg, #f5f7fa 0%, #f0f2ff 100%);
-            padding: 24px;
+            padding: 20px;
             border-radius: 12px;
             border: 3px solid #667eea;
-            margin-top: 20px;
+            margin-top: 15px;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
         }
 
@@ -336,11 +382,11 @@
         }
 
         .result-title {
-            font-size: 1.4em;
+            font-size: 1.2em;
             font-weight: 800;
             color: #333;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
             border-bottom: 3px solid #667eea;
         }
 
@@ -355,8 +401,8 @@
         }
 
         .step-container {
-            margin-bottom: 16px;
-            padding: 14px;
+            margin-bottom: 12px;
+            padding: 12px;
             background: white;
             border-left: 5px solid #667eea;
             border-radius: 8px;
@@ -367,33 +413,34 @@
             display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             text-align: center;
-            line-height: 32px;
+            line-height: 28px;
             font-weight: 800;
-            font-size: 1.1em;
-            margin-right: 12px;
-            margin-bottom: 8px;
+            font-size: 0.9em;
+            margin-right: 10px;
+            margin-bottom: 6px;
         }
 
         .step-content {
-            font-size: 1em;
+            font-size: 0.95em;
             color: #333;
             font-weight: 600;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .calculation {
             background: #f9f9f9;
-            padding: 10px 12px;
+            padding: 10px;
             border-radius: 6px;
             font-family: 'Courier New', monospace;
             margin-top: 8px;
             border-left: 4px solid #667eea;
             font-weight: 700;
-            font-size: 1em;
+            font-size: 0.95em;
+            overflow-x: auto;
         }
 
         .step-container.valid {
@@ -415,15 +462,15 @@
         }
 
         .final-conclusion {
-            margin-top: 20px;
-            padding: 18px;
+            margin-top: 12px;
+            padding: 14px;
             border-radius: 10px;
             border: 3px solid;
             font-weight: 800;
-            font-size: 1.15em;
+            font-size: 1em;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .final-conclusion.valid {
@@ -440,36 +487,303 @@
 
         .color-indicator {
             display: inline-block;
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             border: 2px solid white;
             vertical-align: middle;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
 
-        @media (max-width: 1024px) {
-            .content {
-                grid-template-columns: 1fr;
-            }
-
-            .equation-inputs {
-                grid-template-columns: 80px 25px 80px 25px 80px 25px 80px !important;
-            }
-        }
-
-        .info-text {
-            font-size: 0.95em;
-            color: #666;
-            font-weight: 500;
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-
         #equationsContainer {
             display: flex;
             flex-direction: column;
             gap: 0;
+        }
+
+        .info-text {
+            font-size: 0.85em;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 10px;
+            }
+
+            .header {
+                padding: 15px 12px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+                margin-bottom: 6px;
+            }
+
+            .header p {
+                font-size: 0.8em;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .section {
+                gap: 12px;
+            }
+
+            .section-title {
+                font-size: 1.1em;
+                padding-bottom: 8px;
+            }
+
+            .equation-box {
+                padding: 14px;
+                gap: 10px;
+            }
+
+            .equation-box:not(:last-child) {
+                padding-bottom: 16px;
+                margin-bottom: 4px;
+            }
+
+            .equation-inputs {
+                grid-template-columns: 1fr 30px 1fr 30px 1fr 30px 1fr;
+                gap: 6px;
+            }
+
+            .equation-inputs > input.coeff-a,
+            .equation-inputs > input.coeff-b,
+            .equation-inputs > input.constant {
+                padding: 12px;
+                font-size: 1em;
+                min-height: 48px;
+            }
+
+            .equation-inputs > select {
+                padding: 8px 10px;
+                font-size: 0.95em;
+                min-height: 48px;
+            }
+
+            .test-point-inputs {
+                gap: 10px;
+            }
+
+            .test-point-inputs input {
+                padding: 12px;
+                min-height: 45px;
+            }
+
+            .constraint-grid {
+                gap: 10px;
+            }
+
+            .constraint-row > input {
+                min-height: 45px;
+            }
+
+            button {
+                padding: 11px 14px;
+                font-size: 0.9em;
+            }
+
+            .graph-container {
+                min-height: 350px;
+                padding: 12px;
+            }
+
+            .result-section {
+                padding: 16px;
+                margin-top: 12px;
+            }
+
+            .result-title {
+                font-size: 1.05em;
+                margin-bottom: 10px;
+            }
+
+            .step-container {
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+
+            .step-number {
+                width: 26px;
+                height: 26px;
+                line-height: 26px;
+                font-size: 0.85em;
+                margin-right: 8px;
+            }
+
+            .step-content {
+                font-size: 0.9em;
+            }
+
+            .calculation {
+                padding: 8px;
+                font-size: 0.9em;
+                margin-top: 6px;
+            }
+
+            .final-conclusion {
+                font-size: 0.95em;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 8px;
+            }
+
+            .header {
+                padding: 12px 10px;
+            }
+
+            .header h1 {
+                font-size: 1.3em;
+            }
+
+            .header p {
+                font-size: 0.75em;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .section {
+                gap: 10px;
+            }
+
+            .section-title {
+                font-size: 1em;
+                padding-bottom: 6px;
+            }
+
+            .equation-box {
+                padding: 12px;
+                gap: 8px;
+            }
+
+            .equation-label {
+                font-size: 0.9em;
+            }
+
+            .equation-inputs {
+                grid-template-columns: 1fr 28px 1fr 28px 1fr 28px 1fr;
+                gap: 4px;
+            }
+
+            .equation-inputs > input.coeff-a,
+            .equation-inputs > input.coeff-b,
+            .equation-inputs > input.constant {
+                padding: 10px;
+                font-size: 0.95em;
+                min-height: 44px;
+            }
+
+            .equation-inputs > select {
+                padding: 6px 8px;
+                font-size: 0.9em;
+                min-height: 44px;
+            }
+
+            .equation-operator {
+                font-size: 0.95em;
+            }
+
+            .test-point-inputs {
+                gap: 8px;
+            }
+
+            .test-point-inputs input {
+                padding: 10px;
+                min-height: 42px;
+            }
+
+            label {
+                font-size: 0.85em;
+            }
+
+            button {
+                padding: 10px 12px;
+                font-size: 0.85em;
+            }
+
+            .btn-danger {
+                padding: 6px 10px;
+                font-size: 0.75em;
+            }
+
+            .graph-container {
+                min-height: 300px;
+                padding: 10px;
+            }
+
+            canvas {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            .result-section {
+                padding: 12px;
+                margin-top: 10px;
+            }
+
+            .result-title {
+                font-size: 0.95em;
+                margin-bottom: 8px;
+            }
+
+            .step-container {
+                margin-bottom: 8px;
+                padding: 8px;
+            }
+
+            .step-number {
+                width: 24px;
+                height: 24px;
+                line-height: 24px;
+                font-size: 0.75em;
+                margin-right: 6px;
+            }
+
+            .step-content {
+                font-size: 0.85em;
+            }
+
+            .calculation {
+                padding: 6px;
+                font-size: 0.85em;
+            }
+
+            .final-conclusion {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+
+            .constraint-label {
+                font-size: 0.9em;
+                min-width: 40px;
+            }
+
+            .info-text {
+                font-size: 0.75em;
+            }
         }
     </style>
 </head>
@@ -508,21 +822,21 @@
 
                 <div class="test-point-section">
                     <h3 class="section-title">🔍 TITIK UJI</h3>
-                    <p class="info-text">Pilih titik (x, y) untuk diuji apakah memenuhi semua pertidaksamaan</p>
+                    <p class="info-text">Pilih titik (x, y) untuk diuji</p>
                     <div class="test-point-inputs">
                         <div class="form-group">
-                            <label>Nilai x =</label>
+                            <label>x =</label>
                             <input type="number" id="testX" value="2" step="0.1">
                         </div>
                         <div class="form-group">
-                            <label>Nilai y =</label>
+                            <label>y =</label>
                             <input type="number" id="testY" value="2" step="0.1">
                         </div>
                     </div>
                     <button class="btn-primary" style="width: 100%;" onclick="testPoint()">🚀 TEST TITIK</button>
                 </div>
 
-                <button class="btn-secondary" style="width: 100%; margin-top: 20px;" onclick="drawGraph()">🎨 UPDATE GRAFIK</button>
+                <button class="btn-secondary" style="width: 100%;" onclick="drawGraph()">🎨 UPDATE GRAFIK</button>
             </div>
 
             <!-- Right Side: Graph -->
@@ -532,7 +846,7 @@
                     <canvas id="graphCanvas" width="500" height="500"></canvas>
                 </div>
                 <div class="result-section" id="resultSection" style="display: none;">
-                    <div class="result-title">📍 HASIL ANALISIS TITIK UJI</div>
+                    <div class="result-title">📍 HASIL ANALISIS</div>
                     <div id="resultContent"></div>
                 </div>
             </div>
