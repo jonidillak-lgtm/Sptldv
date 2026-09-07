@@ -35,13 +35,16 @@
         }
 
         .header h1 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
+            font-size: 1.2em;
+            opacity: 0.95;
+            font-weight: 500;
         }
 
         .content {
@@ -58,10 +61,11 @@
         }
 
         .section-title {
-            font-size: 1.5em;
+            font-size: 1.6em;
             color: #333;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 12px;
+            font-weight: 700;
         }
 
         .form-group {
@@ -71,19 +75,21 @@
         }
 
         label {
-            font-weight: 600;
-            color: #555;
-            font-size: 0.95em;
+            font-weight: 700;
+            color: #444;
+            font-size: 1em;
         }
 
         input[type="number"],
         input[type="text"],
         select {
-            padding: 10px 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 0.95em;
+            padding: 12px 14px;
+            border: 2.5px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
             transition: all 0.3s;
+            font-weight: 600;
+            background-color: #fafafa;
         }
 
         input[type="number"]:focus,
@@ -91,167 +97,177 @@
         select:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+            background-color: #fff;
         }
 
         .equation-box {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            border-left: 5px solid #667eea;
+            border-radius: 12px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        }
+
+        .equation-label {
+            font-weight: 800;
+            color: #667eea;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
             gap: 10px;
         }
 
         .equation-inputs {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: auto 60px auto 60px auto 70px auto;
             gap: 8px;
-            align-items: end;
+            align-items: center;
         }
 
-        .equation-inputs > input {
-            padding: 8px;
-            font-size: 0.9em;
-        }
-
-        .operator-select {
-            display: flex;
-            gap: 5px;
-        }
-
-        .operator-select select {
-            width: 100%;
-            padding: 8px;
-            font-size: 0.9em;
-        }
-
-        .equation-number {
+        .equation-inputs > input,
+        .equation-inputs > select {
+            padding: 12px;
+            font-size: 0.95em;
             font-weight: 700;
-            color: #667eea;
-            font-size: 1.1em;
-            min-width: 30px;
         }
 
-        .equation-label {
-            font-weight: 600;
-            color: #667eea;
-            font-size: 0.9em;
-            margin-bottom: 5px;
+        .equation-operator {
+            font-weight: 700;
+            color: #444;
+            text-align: center;
+            font-size: 1em;
         }
 
         .test-point-section {
-            background: #f0f4ff;
-            padding: 15px;
-            border-radius: 8px;
-            border: 2px solid #667eea;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f4ff 100%);
+            padding: 18px;
+            border-radius: 12px;
+            border: 3px solid #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
         }
 
         .test-point-inputs {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .test-point-inputs input {
+            font-weight: 700;
+            font-size: 1em;
         }
 
         .constraint-section {
-            background: #fff3cd;
-            padding: 15px;
-            border-radius: 8px;
-            border: 2px solid #ffc107;
+            background: linear-gradient(135deg, #fff9e6 0%, #fffbf0 100%);
+            padding: 18px;
+            border-radius: 12px;
+            border: 3px solid #ffc107;
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.1);
         }
 
         .constraint-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 12px;
         }
 
         .constraint-row {
             display: flex;
-            align-items: end;
-            gap: 8px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .constraint-label {
+            font-weight: 800;
+            color: #f57f17;
+            font-size: 1.05em;
+            min-width: 50px;
         }
 
         .constraint-row > input {
             flex: 1;
-            padding: 8px;
-            font-size: 0.9em;
-        }
-
-        .constraint-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            color: #555;
-            font-size: 0.9em;
-            white-space: nowrap;
+            padding: 12px;
+            font-size: 1em;
+            font-weight: 700;
         }
 
         button {
-            padding: 12px 24px;
+            padding: 14px 24px;
             border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
+            border-radius: 10px;
+            font-size: 1.05em;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
         .btn-secondary {
-            background: #6c757d;
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
         }
 
         .btn-secondary:hover {
-            background: #5a6268;
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, #5a6268 0%, #495057 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
         }
 
         .btn-danger {
-            background: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
             color: white;
-            padding: 8px 16px;
-            font-size: 0.9em;
+            padding: 10px 18px;
+            font-size: 0.95em;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
         }
 
         .btn-danger:hover {
-            background: #c82333;
+            background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+            transform: translateY(-2px);
         }
 
         .btn-success {
-            background: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
             color: white;
             width: 100%;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
 
         .btn-success:hover {
-            background: #218838;
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
         }
 
         .graph-container {
             background: #fff;
-            border: 2px solid #ddd;
-            border-radius: 8px;
+            border: 3px solid #ddd;
+            border-radius: 12px;
             padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 500px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         canvas {
@@ -259,106 +275,185 @@
             height: auto;
         }
 
-        .result-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border: 2px solid #ddd;
-            margin-top: 20px;
-        }
-
-        .result-title {
-            font-size: 1.2em;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .result-item {
-            padding: 10px;
-            background: white;
-            border-radius: 5px;
-            margin-bottom: 8px;
-            border-left: 4px solid #667eea;
-        }
-
-        .result-value {
-            font-family: 'Courier New', monospace;
-            color: #667eea;
-            font-weight: 600;
-        }
-
-        .test-result {
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-weight: 600;
-        }
-
-        .test-result.valid {
-            background: #d4edda;
-            border: 2px solid #28a745;
-            color: #155724;
-        }
-
-        .test-result.invalid {
-            background: #f8d7da;
-            border: 2px solid #dc3545;
-            color: #721c24;
-        }
-
         .delete-btn-container {
             display: flex;
             justify-content: flex-end;
             gap: 10px;
+            margin-top: 8px;
+        }
+
+        .result-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #f0f2ff 100%);
+            padding: 24px;
+            border-radius: 12px;
+            border: 3px solid #667eea;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .result-section.valid {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #f1f8f4 0%, #e8f5e9 100%);
+        }
+
+        .result-section.invalid {
+            border-color: #dc3545;
+            background: linear-gradient(135deg, #fef5f5 0%, #ffebee 100%);
+        }
+
+        .result-title {
+            font-size: 1.4em;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .result-section.valid .result-title {
+            color: #1b5e20;
+            border-bottom-color: #28a745;
+        }
+
+        .result-section.invalid .result-title {
+            color: #7d0d0d;
+            border-bottom-color: #dc3545;
+        }
+
+        .step-container {
+            margin-bottom: 16px;
+            padding: 14px;
+            background: white;
+            border-left: 5px solid #667eea;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 800;
+            font-size: 1.1em;
+            margin-right: 12px;
+            margin-bottom: 8px;
+        }
+
+        .step-content {
+            font-size: 1em;
+            color: #333;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .calculation {
+            background: #f9f9f9;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin-top: 8px;
+            border-left: 4px solid #667eea;
+            font-weight: 700;
+            font-size: 1em;
+        }
+
+        .step-container.valid {
+            border-left-color: #28a745;
+            background: #f1f8f4;
+        }
+
+        .step-container.invalid {
+            border-left-color: #dc3545;
+            background: #fef5f5;
+        }
+
+        .step-container.valid .step-number {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+        }
+
+        .step-container.invalid .step-number {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+
+        .final-conclusion {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 10px;
+            border: 3px solid;
+            font-weight: 800;
+            font-size: 1.15em;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .final-conclusion.valid {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .final-conclusion.invalid {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .color-indicator {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid white;
+            vertical-align: middle;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
 
         @media (max-width: 1024px) {
             .content {
                 grid-template-columns: 1fr;
             }
+
+            .equation-inputs {
+                grid-template-columns: auto 50px auto 50px auto 60px auto !important;
+            }
         }
 
-        .color-indicator {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-
-        .flex-row {
-            display: flex;
-            align-items: end;
-            gap: 10px;
-        }
-
-        .flex-row > div {
-            flex: 1;
+        .info-text {
+            font-size: 0.95em;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎯 Model SPTLDV</h1>
-            <p>Sistem Pertidaksamaan Linear Dua Variabel - Interactive Visualization</p>
+            <h1>🎯 MODEL SPTLDV</h1>
+            <p>Sistem Pertidaksamaan Linear Dua Variabel - Visualisasi Interaktif</p>
         </div>
 
         <div class="content">
             <!-- Left Side: Input Controls -->
             <div class="section">
-                <h2 class="section-title">⚙️ Input Pertidaksamaan</h2>
+                <h2 class="section-title">⚙️ INPUT PERTIDAKSAMAAN</h2>
 
                 <div id="equationsContainer">
                     <!-- Equations will be added here dynamically -->
                 </div>
 
-                <button class="btn-primary btn-success" onclick="addEquation()">+ Tambah Persamaan</button>
+                <button class="btn-primary btn-success" onclick="addEquation()">+ TAMBAH PERSAMAAN</button>
 
                 <div class="constraint-section">
-                    <h3 class="section-title">📋 Batasan Variabel</h3>
+                    <h3 class="section-title">📋 BATASAN VARIABEL</h3>
+                    <p class="info-text">Tentukan nilai minimum untuk x dan y</p>
                     <div class="constraint-grid">
                         <div class="constraint-row">
                             <span class="constraint-label">x ≥</span>
@@ -372,33 +467,32 @@
                 </div>
 
                 <div class="test-point-section">
-                    <h3 class="section-title">🔍 Titik Uji</h3>
-                    <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;">Masukkan koordinat untuk menguji apakah titik memenuhi semua pertidaksamaan</p>
+                    <h3 class="section-title">🔍 TITIK UJI</h3>
+                    <p class="info-text">Pilih titik (x, y) untuk diuji apakah memenuhi semua pertidaksamaan</p>
                     <div class="test-point-inputs">
                         <div class="form-group">
-                            <label>x =</label>
+                            <label>Nilai x =</label>
                             <input type="number" id="testX" value="2" step="0.1">
                         </div>
                         <div class="form-group">
-                            <label>y =</label>
+                            <label>Nilai y =</label>
                             <input type="number" id="testY" value="2" step="0.1">
                         </div>
                     </div>
-                    <button class="btn-primary" style="width: 100%;" onclick="testPoint()">Test Titik</button>
-                    <div id="testResult"></div>
+                    <button class="btn-primary" style="width: 100%;" onclick="testPoint()">🚀 TEST TITIK</button>
                 </div>
 
-                <button class="btn-secondary" style="width: 100%; margin-top: 20px;" onclick="drawGraph()">🎨 Update Grafik</button>
+                <button class="btn-secondary" style="width: 100%; margin-top: 20px;" onclick="drawGraph()">🎨 UPDATE GRAFIK</button>
             </div>
 
             <!-- Right Side: Graph -->
             <div class="section">
-                <h2 class="section-title">📊 Visualisasi Grafik</h2>
+                <h2 class="section-title">📊 VISUALISASI GRAFIK</h2>
                 <div class="graph-container">
                     <canvas id="graphCanvas" width="500" height="500"></canvas>
                 </div>
                 <div class="result-section" id="resultSection" style="display: none;">
-                    <div class="result-title">📍 Hasil Uji Titik</div>
+                    <div class="result-title">📍 HASIL ANALISIS TITIK UJI</div>
                     <div id="resultContent"></div>
                 </div>
             </div>
