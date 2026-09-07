@@ -170,6 +170,7 @@
             transition: all 0.3s;
             background-color: #fafafa;
             min-height: 50px;
+            width: 120px;
         }
 
         .equation-inputs > input.constant:focus {
@@ -204,6 +205,17 @@
             font-size: 1.1em;
         }
 
+        .equation-display {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            font-weight: 700;
+            font-size: 1em;
+            color: #333;
+            margin-top: 4px;
+        }
+
         .test-point-section {
             background: linear-gradient(135deg, #e3f2fd 0%, #f0f4ff 100%);
             padding: 16px;
@@ -222,8 +234,19 @@
         .test-point-inputs input {
             font-weight: 700;
             font-size: 1em;
-            padding: 12px;
-            min-height: 45px;
+            padding: 10px;
+            min-height: 40px;
+            border: 2.5px solid #ddd;
+            border-radius: 10px;
+            background-color: #fafafa;
+            transition: all 0.3s;
+        }
+
+        .test-point-inputs input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background-color: #fff;
         }
 
         .constraint-section {
@@ -255,10 +278,21 @@
 
         .constraint-row > input {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
             font-size: 1em;
             font-weight: 700;
-            min-height: 45px;
+            min-height: 40px;
+            border: 2.5px solid #ffc107;
+            border-radius: 10px;
+            background-color: #fffbf0;
+            transition: all 0.3s;
+        }
+
+        .constraint-row > input:focus {
+            outline: none;
+            border-color: #f57f17;
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.15);
+            background-color: #fff;
         }
 
         button {
@@ -339,20 +373,23 @@
         }
 
         .graph-container {
-            background: #fff;
-            border: 3px solid #ddd;
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+            border: 3px solid #667eea;
             border-radius: 12px;
             padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 400px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
         }
 
         canvas {
             max-width: 100%;
             height: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .delete-btn-container {
@@ -564,6 +601,7 @@
                 padding: 12px;
                 font-size: 1em;
                 min-height: 48px;
+                width: auto;
             }
 
             .equation-inputs > select {
@@ -577,8 +615,8 @@
             }
 
             .test-point-inputs input {
-                padding: 12px;
-                min-height: 45px;
+                padding: 10px;
+                min-height: 40px;
             }
 
             .constraint-grid {
@@ -586,7 +624,7 @@
             }
 
             .constraint-row > input {
-                min-height: 45px;
+                min-height: 40px;
             }
 
             button {
@@ -694,6 +732,7 @@
                 padding: 10px;
                 font-size: 0.95em;
                 min-height: 44px;
+                width: auto;
             }
 
             .equation-inputs > select {
@@ -712,7 +751,7 @@
 
             .test-point-inputs input {
                 padding: 10px;
-                min-height: 42px;
+                min-height: 40px;
             }
 
             label {
@@ -803,7 +842,7 @@
                     <!-- Equations will be added here dynamically -->
                 </div>
 
-                <button class="btn-primary btn-success" onclick="addEquation()">+ TAMBAH PERSAMAAN</button>
+                <button class="btn-primary btn-success" onclick="addEquation()">+ TAMBAH PERTIDAKSAMAAN</button>
 
                 <div class="constraint-section">
                     <h3 class="section-title">📋 BATASAN VARIABEL</h3>
