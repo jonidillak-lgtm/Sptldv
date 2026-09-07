@@ -1,7 +1,6 @@
 // SPTLDV Model - Sistem Pertidaksamaan Linear Dua Variabel
 
 const COLORS = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F'];
-let equations = [];
 
 // Initialize with 2 default equations
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,19 +24,17 @@ function addEquation() {
             PERSAMAAN ${index + 1}
         </div>
         <div class="equation-inputs">
-            <span class="equation-operator">a =</span>
-            <input type="number" class="coeff-a" value="1" placeholder="a" step="0.1">
+            <input type="number" class="coeff-a" value="1" placeholder="1" step="0.1" title="Koefisien x">
             <span class="equation-operator">x +</span>
-            <input type="number" class="coeff-b" value="1" placeholder="b" step="0.1">
+            <input type="number" class="coeff-b" value="1" placeholder="1" step="0.1" title="Koefisien y">
             <span class="equation-operator">y</span>
-            <select class="operator">
+            <select class="operator" title="Pilih operator pertidaksamaan">
                 <option value="<">&lt;</option>
                 <option value="<=">&le;</option>
                 <option value=">">&gt;</option>
                 <option value=">=">&ge;</option>
             </select>
-            <span class="equation-operator">c =</span>
-            <input type="number" class="constant" value="5" placeholder="c" step="0.1">
+            <input type="number" class="constant" value="5" placeholder="5" step="0.1" title="Konstanta">
         </div>
         <div class="delete-btn-container">
             <button class="btn-danger" onclick="deleteEquation(${index})">❌ HAPUS</button>
